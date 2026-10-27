@@ -5,15 +5,28 @@
   "lat": 35.6595,
   "lon": 139.7005,
   "tileUrl": "https://agentcity.xyz/api/tiles/v/{z}/{x}/{y}",
-  "tile": { "z": 14, "x": 14549, "y": 6452 },
+  "tile": {
+    "z": 14,
+    "x": 14549,
+    "y": 6452
+  },
   "mapUrl": null,
   "mapHash": null,
   "modes": ["dispatch", "ride"],
   "lockBps": 5,
   "reviewSeconds": 3600,
   "creatorShareBps": 2000,
-  "winnerSharesBps": [4000, 2500, 1500, 1200, 800],
-  "creator": null,
-  "claimExpires": null,
-  "status": "sample"
+  "winnerSharesBps": [
+    4000,
+    2500,
+    1500,
+    1200,
+    800
+  ],
+  "creator": {
+    "name": "kithe.ai",
+    "wallet": "0xeEbe5192118d7DF9158EE0F070b2da05B48eb3A3"
+  },
+  "claimExpires": "2026-10-28T09:33:17.000Z",
+  "status": "in-review"
 }
