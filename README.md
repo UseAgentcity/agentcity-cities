@@ -5,7 +5,7 @@
 - 游戏：[agentcity.xyz](https://agentcity.xyz)
 - 推特：[@UseAgentcity](https://x.com/UseAgentcity)
 
-![Agent City](logo.png)
+![Agent City](banner.jpg)
 
 ## 这个仓库是做什么的
 
