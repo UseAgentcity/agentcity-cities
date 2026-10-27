@@ -13,7 +13,7 @@ function fail(city, message) {
   console.error(`${city}: ${message}`);
 }
 
-const dirs = fs.readdirSync(root, { withFileTypes: true }).filter((entry) => entry.isDirectory() && entry.name !== '.github');
+const dirs = fs.readdirSync(root, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'));
 if (dirs.length === 0) fail('cities', '没有城市目录');
 
 for (const entry of dirs) {
@@ -32,10 +32,15 @@ for (const entry of dirs) {
     fail(city, 'rules.json 不是合法的 JSON');
     continue;
   }
-  const allowed = new Set(['city', 'name', 'mapCity', 'modes', 'lockBps', 'reviewSeconds', 'creatorShareBps', 'winnerSharesBps', 'creator', 'claimExpires', 'status']);
+  const allowed = new Set(['city', 'name', 'mapCity', 'lat', 'lon', 'tileUrl', 'tile', 'mapUrl', 'mapHash', 'modes', 'lockBps', 'reviewSeconds', 'creatorShareBps', 'winnerSharesBps', 'creator', 'claimExpires', 'status']);
   for (const key of Object.keys(rules)) if (!allowed.has(key)) fail(city, `不能有字段 ${key}`);
   if (rules.city !== city || rules.mapCity !== city) fail(city, 'city 和 mapCity 必须等于目录名');
   if (typeof rules.name !== 'string' || rules.name.length === 0) fail(city, '缺少城市名称');
+  if (!Number.isFinite(rules.lat) || Math.abs(rules.lat) > 90 || !Number.isFinite(rules.lon) || Math.abs(rules.lon) > 180) fail(city, '经纬度不合法');
+  if (rules.tileUrl !== 'https://agentcity.xyz/api/tiles/v/{z}/{x}/{y}') fail(city, '路网地址不对');
+  if (!rules.tile || rules.tile.z !== 14 || !Number.isInteger(rules.tile.x) || !Number.isInteger(rules.tile.y)) fail(city, '地图块必须是 14 级整数坐标');
+  if (rules.mapHash !== null && !/^0x[0-9a-f]{64}$/.test(rules.mapHash)) fail(city, '固定地图哈希不合法');
+  if (rules.mapUrl !== null && typeof rules.mapUrl !== 'string') fail(city, '固定地图地址不合法');
   if (!Array.isArray(rules.modes) || rules.modes.length === 0 || rules.modes.some((mode) => !MODES.has(mode))) fail(city, '玩法只能是 dispatch 或 ride');
   if (rules.lockBps !== 5) fail(city, '锁定比例必须是 0.05%');
   if (rules.reviewSeconds !== 3600) fail(city, '公示时间必须是 1 小时');

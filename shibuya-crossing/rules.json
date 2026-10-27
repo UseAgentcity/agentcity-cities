@@ -1,0 +1,19 @@
+{
+  "city": "shibuya-crossing",
+  "name": "涩谷 / Shibuya Crossing",
+  "mapCity": "shibuya-crossing",
+  "lat": 35.6595,
+  "lon": 139.7005,
+  "tileUrl": "https://agentcity.xyz/api/tiles/v/{z}/{x}/{y}",
+  "tile": { "z": 14, "x": 14549, "y": 6452 },
+  "mapUrl": null,
+  "mapHash": null,
+  "modes": ["dispatch", "ride"],
+  "lockBps": 5,
+  "reviewSeconds": 3600,
+  "creatorShareBps": 2000,
+  "winnerSharesBps": [4000, 2500, 1500, 1200, 800],
+  "creator": null,
+  "claimExpires": null,
+  "status": "sample"
+}
