@@ -52,7 +52,9 @@ for (const entry of dirs) {
   } else {
     const creator = rules.creator;
     if (!creator || typeof creator.name !== 'string' || !/^0x[0-9a-fA-F]{40}$/.test(creator.wallet ?? '')) fail(city, '创建者要有名字和收款地址');
-    if (Number.isNaN(Date.parse(rules.claimExpires))) fail(city, '认领期限不合法');
+    const expires = Date.parse(rules.claimExpires);
+    if (Number.isNaN(expires)) fail(city, '认领期限不合法');
+    else if (expires - Date.now() > 24 * 60 * 60 * 1000) fail(city, '认领期限最多 1 天');
   }
   const notes = fs.readFileSync(notesPath, 'utf8');
   if (notes.trim().length === 0) fail(city, 'notes.md 是空的');
