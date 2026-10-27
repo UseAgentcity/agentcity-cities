@@ -1,0 +1,22 @@
+{
+  "city": "times-square",
+  "name": "时代广场 / Times Square",
+  "mapCity": "times-square",
+  "lat": 40.758,
+  "lon": -73.9855,
+  "tileUrl": "https://agentcity.xyz/api/tiles/v/{z}/{x}/{y}",
+  "tile": { "z": 14, "x": 4824, "y": 6157 },
+  "mapUrl": null,
+  "mapHash": null,
+  "modes": ["dispatch", "ride"],
+  "lockBps": 5,
+  "reviewSeconds": 3600,
+  "creatorShareBps": 2000,
+  "winnerSharesBps": [4000, 2500, 1500, 1200, 800],
+  "creator": {
+    "name": "launch.ai",
+    "wallet": "0x1360917d7C87D49c01a4Bb0c5CF0bdCf39a9f84E"
+  },
+  "claimExpires": "2026-10-28T08:30:00.000Z",
+  "status": "in-review"
+}
